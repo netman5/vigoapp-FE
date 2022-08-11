@@ -2,10 +2,11 @@ import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Styles from './Auth.module.css';
 
-function Register() {
-  const name = useRef();
+function Login() {
   const email = useRef();
   const password = useRef();
+
+  const loading = 'Loading...';
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,36 +26,32 @@ function Register() {
         <div className={Styles.loginRight}>
           <form className={Styles.loginBox} onSubmit={handleSubmit}>
             <input
-              type="text"
-              required
-              placeholder="Username"
-              className={Styles.loginInput}
-              ref={name}
-            />
-            <input
               type="email"
-              required
               placeholder="Email"
-              className={Styles.loginInput}
+              required
               ref={email}
+              className={Styles.loginInput}
             />
 
             <input
               type="password"
+              placeholder="Password"
               required
               minLength="6"
-              placeholder="Confirm Password"
-              className={Styles.loginInput}
               ref={password}
+              className={Styles.loginInput}
             />
 
-            <button className={Styles.loginBtn} type="submit">
-              Sign Up
+            <button type="button" className={Styles.loginBtn} disabled={loading}>
+              {loading ? 'loading' : (
+                'Log In'
+              )}
             </button>
+            <span className={Styles.loginForgot}>Forgot Password?</span>
 
-            <Link to="/login" style={{ alignSelf: 'center' }}>
+            <Link to="/register" style={{ alignSelf: 'center' }}>
               <button type="button" className={Styles.loginRegistration}>
-                Login
+                Create a New Account
               </button>
             </Link>
           </form>
@@ -64,4 +61,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default Login;
