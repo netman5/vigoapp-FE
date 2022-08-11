@@ -1,16 +1,22 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Styles from './Auth.module.css';
+import { loginUser } from '../../features/auth/authSlice';
 
 function Login() {
+  const dispatch = useDispatch();
   const email = useRef();
   const password = useRef();
 
-  const loading = 'Loading...';
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit');
+    const data = {
+      email: email.current.value,
+      password: password.current.value,
+    };
+
+    dispatch(loginUser(data));
   };
 
   return (
@@ -42,10 +48,8 @@ function Login() {
               className={Styles.loginInput}
             />
 
-            <button type="button" className={Styles.loginBtn} disabled={loading}>
-              {loading ? 'loading' : (
-                'Log In'
-              )}
+            <button type="submit" className={Styles.loginBtn}>
+              Log In
             </button>
             <span className={Styles.loginForgot}>Forgot Password?</span>
 

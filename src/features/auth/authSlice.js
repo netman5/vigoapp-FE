@@ -16,7 +16,8 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (data, t
     const response = await axios.post(`${baseUrl}/auth/register`, data);
     const { token } = response.data;
     localStorage.setItem('token', token);
-    console.log(response.data);
+    window.history.pushState({}, '', '/login');
+    window.location.reload();
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -24,9 +25,15 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (data, t
 });
 
 // login user
-export const loginUser = createAsyncThunk('auth/loginUser', async (data, thunkAPI) => {
+export const loginUser = createAsyncThunk('auth/loginUser', async (loginData, thunkAPI) => {
   try {
-    const response = await axios.post(`${baseUrl}/auth/login`, data);
+    const response = await axios.post(`${baseUrl}/auth/login`, loginData);
+    const { token, user } = response.data;
+    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('token', token);
+    localStorage.setItem('isLoggedIn', true);
+    window.history.pushState({}, '', '/');
+    window.location.reload();
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -37,6 +44,11 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (data, thunkAP
 export const logoutUser = createAsyncThunk('auth/logoutUser', async (data, thunkAPI) => {
   try {
     const response = await axios.post(`${baseUrl}/auth/logout`, data);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('isLoggedIn');
+    window.history.pushState({}, '', '/login');
+    window.location.reload();
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

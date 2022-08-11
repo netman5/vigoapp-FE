@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { registerUser } from '../../features/auth/authSlice';
 import Styles from './Auth.module.css';
 
 function Register() {
@@ -7,9 +9,17 @@ function Register() {
   const email = useRef();
   const password = useRef();
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit');
+
+    const data = {
+      name: name.current.value,
+      email: email.current.value,
+      password: password.current.value,
+    };
+    dispatch(registerUser(data));
   };
 
   return (
