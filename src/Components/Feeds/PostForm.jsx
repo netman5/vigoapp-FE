@@ -1,12 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
 import Styles from './PostForm.module.css';
 import PhotoIcon from './PhotoIcon';
+import { getAllPosts } from '../../features/posts/postsSlice';
 
 function PostForm() {
   const [file, setFile] = useState('');
   const content = useRef('');
-  const user = JSON.parse(localStorage.getItem('user'));
-
+  const dispatch = useDispatch();
+  // const user = JSON.parse(localStorage.getItem('user'));
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const handleFileChange = (e) => {
@@ -15,9 +18,8 @@ function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newPost = {
-      user_id: user.id,
+      // id: user.id,
       content: content.current.value,
     };
 
@@ -26,20 +28,23 @@ function PostForm() {
       data.append('file', file);
       data.append('name', file.name);
       newPost.image = file.name;
+      console.log(newPost);
     }
-    try {
-      await fetch(`${baseUrl}/posts`,
-        {
-          method: 'POST',
-          body: JSON.stringify(newPost),
-        });
-      // window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
-
+    // dispatch(createPost(newPost));
+    const response = await axios.post(`${baseUrl}/posts`, newPost, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log(response.data);
     setFile('');
   };
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
 
   return (
     <div className={Styles.container}>
