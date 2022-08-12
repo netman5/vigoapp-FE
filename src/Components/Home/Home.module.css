@@ -1,0 +1,25 @@
+.home{
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  margin: auto;
+  background-color: white;
+}
+
+.UserInfo{
+  flex: 25%;
+  border-right: 1px solid #e0e0e0;
+  padding: 20px;
+}
+
+.Feeds{
+  flex: 55%;
+  padding: 20px;
+}
+
+.Followers{
+  flex: 20%;
+  border-left: 1px solid #e0e0e0;
+  padding: 20px;
+}

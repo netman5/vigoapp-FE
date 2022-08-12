@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './Components/Nav/Layout';
 import Register from './Components/authenication/Register';
 import Login from './Components/authenication/Login';
+import Home from './Components/Home/Home';
 
 function App() {
   const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -14,7 +15,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           {isLoggedIn ? (
             <>
-              <Route path="/" element={<h1>Home</h1>} />
+              <Route path="/" element={<Home />} />
             </>
           ) : <Route path="/" element={<Login />} />}
 

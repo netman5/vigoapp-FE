@@ -7,6 +7,8 @@ import { logoutUser } from '../../features/auth/authSlice';
 
 function MainNavigation() {
   const isLoggedIn = localStorage.getItem('token') !== null;
+  const user = JSON.parse(localStorage.getItem('user')) || {};
+  const { name, email } = user;
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -20,6 +22,13 @@ function MainNavigation() {
         <ul>
           {isLoggedIn ? (
             <>
+              <li>
+                Hello!
+                {' '}
+                {name}
+                {' '}
+                {email}
+              </li>
               <li>
                 <Link to="/">Home</Link>
               </li>
