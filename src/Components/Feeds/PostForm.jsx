@@ -1,16 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import Styles from './PostForm.module.css';
 import PhotoIcon from './PhotoIcon';
-import { getAllPosts } from '../../features/posts/postsSlice';
+import { createPost } from '../../features/posts/postsSlice';
 
 function PostForm() {
   const [file, setFile] = useState('');
   const content = useRef('');
+  const btnRef = useRef(null);
   const dispatch = useDispatch();
-  // const user = JSON.parse(localStorage.getItem('user'));
-  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -18,33 +16,26 @@ function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPost = {
-      // id: user.id,
-      content: content.current.value,
-    };
-
-    if (file) {
-      const data = new FormData();
-      data.append('file', file);
-      data.append('name', file.name);
-      newPost.image = file.name;
-      console.log(newPost);
+    const formData = new FormData();
+    formData.append('content', content.current.value);
+    formData.append('image', file);
+    try {
+      dispatch(createPost(formData));
+      content.current.value = '';
+      setFile('');
+      btnRef.current.disabled = true;
+    } catch (err) {
+      console.log(err.message);
     }
-    // dispatch(createPost(newPost));
-    const response = await axios.post(`${baseUrl}/posts`, newPost, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    });
-    console.log(response.data);
-    setFile('');
   };
 
   useEffect(() => {
-    dispatch(getAllPosts());
-  }, [dispatch]);
+    if (content.current.value.length > 0) {
+      btnRef.current.disabled = false;
+    } else {
+      btnRef.current.disabled = true;
+    }
+  }, [content.current.value]);
 
   return (
     <div className={Styles.container}>
@@ -69,6 +60,7 @@ function PostForm() {
           <button
             type="submit"
             className={Styles.postBtn}
+            ref={btnRef}
           >
             Post
           </button>

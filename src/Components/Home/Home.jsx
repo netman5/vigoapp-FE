@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllPosts } from '../../features/posts/postsSlice';
 import Styles from './Home.module.css';
 import FollowersSection from './FollowersSection';
 import Feeds from './Feeds';
 import UserInfo from './UserInfo';
 
 function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
+
+  const storedPosts = useSelector((state) => state.posts.data.posts);
+
   return (
     <div className={Styles.home}>
       <section className={Styles.UserInfo}>
@@ -12,7 +22,7 @@ function Home() {
       </section>
 
       <section className={Styles.Feeds}>
-        <Feeds />
+        <Feeds posts={storedPosts} />
       </section>
 
       <section className={Styles.Followers}>

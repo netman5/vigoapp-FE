@@ -6,28 +6,27 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const initialState = {
   data: [],
+  message: '',
   loading: false,
   error: null,
 };
 
 // create post
-export const createPost = createAsyncThunk(
-  'posts/createPost', async (post, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(`${baseUrl}/posts`, post, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  },
-);
+export const createPost = createAsyncThunk('posts/createPost', async (post, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(`${baseUrl}/posts`, post, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'application/json',
+        'content-type': 'multipart/form-data',
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
 
 // get all posts
 export const getAllPosts = createAsyncThunk('posts/getAllPosts', async (data, thunkAPI) => {
@@ -36,7 +35,7 @@ export const getAllPosts = createAsyncThunk('posts/getAllPosts', async (data, th
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'content-type': 'multipart/form-data',
       },
     });
     return response.data;
@@ -80,7 +79,7 @@ const postsSlice = createSlice({
     },
 
     [createPost.fulfilled]: (state, action) => {
-      state.data.push(action.payload);
+      state.message = action.payload.message;
     },
 
     [createPost.rejected]: (state, action) => {
