@@ -10,13 +10,12 @@ function PostFeeds(props) {
   return (
     <div>
       {data.map((post) => (
-        console.log(post),
-          <ul key={post.id}>
-            <li>
-              <p>{post.text}</p>
-              <img src={`http://127.0.0.1:3000/${post.image_url.url}`} alt={post.content} />
-            </li>
-          </ul>
+        <ul key={post.id}>
+          <li>
+            <p>{post.text}</p>
+            <img src={post.image_url} alt={post.content} />
+          </li>
+        </ul>
       )).reverse()}
     </div>
   );

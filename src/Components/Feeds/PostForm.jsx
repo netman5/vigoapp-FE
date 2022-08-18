@@ -6,6 +6,7 @@ import { createPost } from '../../features/posts/postsSlice';
 
 function PostForm() {
   const [file, setFile] = useState('');
+  // filepreview: URL.createObjectURL(event.target.files[0]),
   const content = useRef('');
   const btnRef = useRef(null);
   const dispatch = useDispatch();
