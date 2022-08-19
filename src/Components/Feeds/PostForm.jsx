@@ -6,7 +6,6 @@ import { createPost } from '../../features/posts/postsSlice';
 
 function PostForm() {
   const [file, setFile] = useState('');
-  // filepreview: URL.createObjectURL(event.target.files[0]),
   const content = useRef('');
   const btnRef = useRef(null);
   const dispatch = useDispatch();
@@ -17,26 +16,53 @@ function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('content', content.current.value);
-    formData.append('image', file);
     try {
-      dispatch(createPost(formData));
-      content.current.value = '';
-      setFile('');
-      btnRef.current.disabled = true;
-    } catch (err) {
-      console.log(err.message);
+      if (!file) {
+        const newPost = {
+          content: content.current.value,
+        };
+        dispatch(createPost(newPost));
+        content.current.value = '';
+        setFile('');
+        btnRef.current.disabled = true;
+      } else if (!content.current.value) {
+        const data = new FormData();
+        data.append('image', file);
+        dispatch(createPost(data));
+        content.current.value = '';
+        setFile('');
+        btnRef.current.disabled = true;
+      } else {
+        const data = new FormData();
+        data.append('image', file);
+        data.append('content', content.current.value);
+        dispatch(createPost(data));
+        content.current.value = '';
+        setFile('');
+        btnRef.current.disabled = true;
+      }
+    } catch (error) {
+      console.log(error);
     }
+
+    return null;
   };
 
   useEffect(() => {
-    if (content.current.value.length > 0) {
+    if (content) {
       btnRef.current.disabled = false;
     } else {
       btnRef.current.disabled = true;
     }
   }, [content.current.value]);
+
+  useEffect(() => {
+    if (file) {
+      btnRef.current.disabled = false;
+    } else {
+      btnRef.current.disabled = true;
+    }
+  }, [file]);
 
   return (
     <div className={Styles.container}>
