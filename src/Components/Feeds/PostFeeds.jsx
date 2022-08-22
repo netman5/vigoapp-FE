@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import TimeAgo from 'timeago-react';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { BiCommentDetail } from 'react-icons/bi';
@@ -19,7 +20,10 @@ function PostFeeds(props) {
             <div className={styles.postDetails}>
               <div className={styles.details}>
                 <img src={Avatar} alt="post" className={styles.profileImage} />
-                <h3>{post.name || 'John Doe'}</h3>
+                <div className={styles.name}>
+                  <span>{post.name || 'John Doe'}</span>
+                  <TimeAgo datetime={post.date} className={styles.date} />
+                </div>
               </div>
               <FiMoreHorizontal className={styles.moreIcon} />
             </div>
