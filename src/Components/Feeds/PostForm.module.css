@@ -1,8 +1,10 @@
 .container{
+  width: 96%;
+  margin: auto;
 }
 
 .container svg{
-  width: 30px;
+  width: 20px;
   cursor: pointer;
 }
 
@@ -35,14 +37,22 @@
   height: 150px;
 }
 
+.submit{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .shareOption{
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
 }
 
 .postBtn{
-  display: inline-block;
+  width: 15%;
   border: none;
   border-radius: 5px;
   background-color: #00bcd4;
@@ -51,5 +61,5 @@
   cursor: pointer;
   padding: 10px 30px;
   margin-bottom: 10px;
-  align-items: center;
+  align-self: end;
 }

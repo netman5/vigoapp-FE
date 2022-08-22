@@ -17,8 +17,10 @@ function PostFeeds(props) {
         <ul key={post.id}>
           <li>
             <div className={styles.postDetails}>
-              <img src={Avatar} alt="post" className={styles.profileImage} />
-              <h3>{post.name || 'Anonymous'}</h3>
+              <div className={styles.details}>
+                <img src={Avatar} alt="post" className={styles.profileImage} />
+                <h3>{post.name || 'John Doe'}</h3>
+              </div>
               <FiMoreHorizontal className={styles.moreIcon} />
             </div>
             <p className={styles.postDescription}>{post.text}</p>

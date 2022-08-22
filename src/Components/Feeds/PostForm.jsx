@@ -74,9 +74,7 @@ function PostForm() {
             placeholder={`What's on your mind? ${user.name}`}
             ref={content}
           />
-          <label htmlFor="file" className={Styles.shareOption}>
-            <PhotoIcon />
-            <span className={Styles.shareOptionText}>Photo or Video</span>
+          <label htmlFor="file">
             <input
               style={{ display: 'none' }}
               type="file"
@@ -85,13 +83,20 @@ function PostForm() {
               onChange={handleFileChange}
             />
           </label>
-          <button
-            type="submit"
-            className={Styles.postBtn}
-            ref={btnRef}
-          >
-            Post
-          </button>
+
+          <div className={Styles.submit}>
+            <div className={Styles.shareOption}>
+              <PhotoIcon />
+              <span className={Styles.shareOptionText}>Photo or Video</span>
+            </div>
+            <button
+              type="submit"
+              className={Styles.postBtn}
+              ref={btnRef}
+            >
+              Post
+            </button>
+          </div>
         </form>
       </div>
     </div>
