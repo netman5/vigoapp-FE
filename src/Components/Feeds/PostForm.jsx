@@ -5,6 +5,7 @@ import PhotoIcon from './PhotoIcon';
 import { createPost } from '../../features/posts/postsSlice';
 
 function PostForm() {
+  const user = JSON.parse(localStorage.getItem('user'));
   const [file, setFile] = useState('');
   const content = useRef('');
   const btnRef = useRef(null);
@@ -70,7 +71,7 @@ function PostForm() {
         <form className={Styles.form} onSubmit={handleSubmit} encType="multipart/form-data">
           <input
             type="text"
-            placeholder="What's on your mind?"
+            placeholder={`What's on your mind? ${user.name}`}
             ref={content}
           />
           <label htmlFor="file" className={Styles.shareOption}>

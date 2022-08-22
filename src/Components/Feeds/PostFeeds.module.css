@@ -12,7 +12,6 @@
   display: inline-block;
   margin: 0 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  padding: 20px;
   border-radius: 5px;
 }
 
@@ -22,13 +21,91 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 0 10px;
 }
 
-.postDetails .postImage{
+.postDetails .profileImage{
   width: 8%;
   height: 8%;
   border-radius: 50%;
-  /* background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat; */
+}
+
+.postDescription{
+  width: 90%;
+  padding: 0 10px;
+}
+
+.postImage{
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.postImage img{
+  width: 100%;
+  height: auto;
+}
+
+.divider{
+  width: 95%;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin-top: 8px;
+}
+
+.postStats{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+}
+
+.postStats span{
+  font-size: 14px;
+  color: #8e8e8e;
+}
+
+.postReactions{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 10px;
+}
+
+.like, .comment, .share{
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px;
+}
+
+.share:hover{
+  background-color: #e0e0e0;
+  /* padding: 10px; */
+  border-radius: 4px;
+}
+
+.like:hover{
+  background-color: #e0e0e0;
+  /* padding: 10px; */
+  border-radius: 4px;
+}
+
+.comment:hover{
+  background-color: #e0e0e0;
+  /* padding: 10px; */
+  border-radius: 4px;
+}
+
+
+.reactionIcons{
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.postReactions span{
+  color: #8e8e8e;
+  font-size: 16px;
 }
