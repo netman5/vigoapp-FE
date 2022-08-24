@@ -43,7 +43,7 @@ function PostForm() {
         btnRef.current.disabled = true;
       }
     } catch (error) {
-      console.log(error);
+      return error;
     }
 
     return null;
