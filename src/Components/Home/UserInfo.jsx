@@ -1,8 +1,11 @@
 import React from 'react';
 
 function UserInfo() {
+  const user = localStorage.getItem('token');
   return (
-    <div>UserInfo</div>
+    <div>
+      <p>{`Welcome ${user}!`}</p>
+    </div>
   );
 }
 
