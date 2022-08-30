@@ -6,14 +6,38 @@ const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const initialState = {
   data: [],
+  message: '',
   loading: false,
   error: null,
 };
 
+// create post
+export const createPost = createAsyncThunk('posts/createPost', async (post, { rejectWithValue }) => {
+  try {
+    const response = await axios.post(`${baseUrl}/posts`, post, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'application/json',
+        'content-type': 'multipart/form-data',
+      },
+    });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error);
+  }
+});
+
 // get all posts
 export const getAllPosts = createAsyncThunk('posts/getAllPosts', async (data, thunkAPI) => {
   try {
-    const response = await axios.get(`${baseUrl}/posts`);
+    const response = await axios.get(`${baseUrl}/posts`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'application/json',
+        'content-type': 'multipart/form-data',
+      },
+    });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
@@ -50,6 +74,18 @@ const postsSlice = createSlice({
     },
   },
   extraReducers: {
+    [createPost.pending]: (state) => {
+      state.loading = true;
+    },
+
+    [createPost.fulfilled]: (state, action) => {
+      state.message = action.payload.message;
+    },
+
+    [createPost.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
+
     [getAllPosts.pending]: (state) => {
       state.loading = true;
     },

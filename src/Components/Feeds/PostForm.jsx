@@ -1,13 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Styles from './PostForm.module.css';
 import PhotoIcon from './PhotoIcon';
+import { createPost } from '../../features/posts/postsSlice';
 
 function PostForm() {
+  const user = JSON.parse(localStorage.getItem('user'));
   const [file, setFile] = useState('');
   const content = useRef('');
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const btnRef = useRef(null);
+  const dispatch = useDispatch();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -15,31 +17,53 @@ function PostForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const newPost = {
-      user_id: user.id,
-      content: content.current.value,
-    };
-
-    if (file) {
-      const data = new FormData();
-      data.append('file', file);
-      data.append('name', file.name);
-      newPost.image = file.name;
-    }
     try {
-      await fetch(`${baseUrl}/posts`,
-        {
-          method: 'POST',
-          body: JSON.stringify(newPost),
-        });
-      // window.location.reload();
-    } catch (err) {
-      console.log(err);
+      if (!file) {
+        const newPost = {
+          content: content.current.value,
+        };
+        dispatch(createPost(newPost));
+        content.current.value = '';
+        setFile('');
+        btnRef.current.disabled = true;
+      } else if (!content.current.value) {
+        const data = new FormData();
+        data.append('image', file);
+        dispatch(createPost(data));
+        content.current.value = '';
+        setFile('');
+        btnRef.current.disabled = true;
+      } else {
+        const data = new FormData();
+        data.append('image', file);
+        data.append('content', content.current.value);
+        dispatch(createPost(data));
+        content.current.value = '';
+        setFile('');
+        btnRef.current.disabled = true;
+      }
+    } catch (error) {
+      return error;
     }
 
-    setFile('');
+    return null;
   };
+
+  useEffect(() => {
+    if (content) {
+      btnRef.current.disabled = false;
+    } else {
+      btnRef.current.disabled = true;
+    }
+  }, [content.current.value]);
+
+  useEffect(() => {
+    if (file) {
+      btnRef.current.disabled = false;
+    } else {
+      btnRef.current.disabled = true;
+    }
+  }, [file]);
 
   return (
     <div className={Styles.container}>
@@ -47,12 +71,10 @@ function PostForm() {
         <form className={Styles.form} onSubmit={handleSubmit} encType="multipart/form-data">
           <input
             type="text"
-            placeholder="What's on your mind?"
+            placeholder={`What's on your mind? ${user.name}`}
             ref={content}
           />
-          <label htmlFor="file" className={Styles.shareOption}>
-            <PhotoIcon />
-            <span className={Styles.shareOptionText}>Photo or Video</span>
+          <label htmlFor="file">
             <input
               style={{ display: 'none' }}
               type="file"
@@ -61,12 +83,20 @@ function PostForm() {
               onChange={handleFileChange}
             />
           </label>
-          <button
-            type="submit"
-            className={Styles.postBtn}
-          >
-            Post
-          </button>
+
+          <div className={Styles.submit}>
+            <div className={Styles.shareOption}>
+              <PhotoIcon />
+              <span className={Styles.shareOptionText}>Photo or Video</span>
+            </div>
+            <button
+              type="submit"
+              className={Styles.postBtn}
+              ref={btnRef}
+            >
+              Post
+            </button>
+          </div>
         </form>
       </div>
     </div>
