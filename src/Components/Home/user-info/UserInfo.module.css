@@ -1,0 +1,28 @@
+.container{
+  /* border: 1px solid red; */
+  width: 100%;
+}
+
+.imageContainer{
+  height: 150px;
+  position: relative;
+}
+
+.coverPic{
+  border-radius: 5px;
+  height: 110px;
+  object-fit: cover;
+}
+
+.userPic{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  object-fit: cover;
+  top: 70px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border: 3px solid white;
+}
