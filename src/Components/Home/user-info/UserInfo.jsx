@@ -13,7 +13,32 @@ function UserInfo() {
           <img src={Avatar} alt={Avatar} className={styles.userPic} />
         </div>
       </div>
-      <p>{`Welcome ${name}!`}</p>
+      <div className={styles.userInfo}>
+        <h3>{`${name}`}</h3>
+        <p>
+          Location:
+          {' '}
+          <span>San Diego</span>
+        </p>
+        <p>
+          Occupation:
+          {' '}
+          <span>Sofware Developer</span>
+        </p>
+        <div className={styles.follow}>
+          <p>
+            Followers:
+            {' '}
+            <span>200</span>
+          </p>
+
+          <p>
+            Following:
+            {' '}
+            <span>0</span>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

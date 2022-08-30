@@ -1,6 +1,10 @@
 .container{
-  /* border: 1px solid red; */
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
 }
 
 .imageContainer{
@@ -25,4 +29,28 @@
   right: 0;
   margin: 0 auto;
   border: 3px solid white;
+}
+
+.userInfo{
+  padding: 10px;
+  margin: 0;
+}
+
+.userInfo h3{
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.userInfo p{
+  font-weight: bold;
+}
+
+.userInfo span{
+  font-weight: 300;
+}
+
+.follow{
+  display: flex;
+  gap: 10px;
+  margin: 0;
 }
