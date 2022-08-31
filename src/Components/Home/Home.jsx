@@ -4,7 +4,7 @@ import { getAllPosts } from '../../features/posts/postsSlice';
 import Styles from './Home.module.css';
 import FollowersSection from './FollowersSection';
 import Feeds from './Feeds';
-import UserInfo from './UserInfo';
+import UserInfo from './user-info/UserInfo';
 
 function Home() {
   const dispatch = useDispatch();
