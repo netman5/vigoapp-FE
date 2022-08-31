@@ -3,7 +3,7 @@ import styles from './UserInfo.module.css';
 
 function Activity() {
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.group}>
         <ul>
           <li>Sales</li>
