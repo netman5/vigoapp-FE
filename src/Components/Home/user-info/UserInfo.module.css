@@ -1,30 +1,30 @@
-.main{
+.main {
   display: flex;
   flex-direction: column;
   gap: 60px;
 }
 
-.container{
+.container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
   border-radius: 5px;
   border: 1px solid #e6e6e6;
 }
 
-.imageContainer{
+.imageContainer {
   height: 150px;
   position: relative;
 }
 
-.coverPic{
+.coverPic {
   border-radius: 5px;
   height: 110px;
   object-fit: cover;
 }
 
-.userPic{
+.userPic {
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -37,50 +37,55 @@
   border: 3px solid white;
 }
 
-.userInfo{
+.userInfo {
   padding: 10px;
   margin: 0;
 }
 
-.userInfo h3{
+.userInfo h3 {
   text-transform: capitalize;
   text-align: center;
 }
 
-.userInfo p{
+.userInfo p {
   font-weight: bold;
 }
 
-.userInfo span{
+.userInfo span {
   font-weight: 300;
 }
 
-.follow{
+.follow {
   display: flex;
   gap: 10px;
   margin: 0;
 }
 
-.groups, .events, .hashtags{
+.groups,
+.events,
+.hashtags {
   padding: 10px;
 }
 
-.groups, .events, .hashtags, ul{
+.groups,
+.events,
+.hashtags,
+ul {
   list-style: none;
   padding-left: 10px;
 }
 
-.lists{
+.lists {
   display: flex;
   gap: 8px;
 }
 
-.lists span{
-  color: #1F90FF;
+.lists span {
+  color: #1f90ff;
   cursor: pointer;
 }
 
-.hashtags li{
-  color: #1F90FF;
+.hashtags li {
+  color: #1f90ff;
   cursor: pointer;
 }

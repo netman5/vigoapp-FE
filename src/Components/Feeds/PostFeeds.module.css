@@ -1,20 +1,20 @@
-.feeds{
+.feeds {
   margin: 10px auto;
 }
 
-.feeds ul{
+.feeds ul {
   list-style: none;
   padding: 0;
 }
 
-.feeds ul li{
+.feeds ul li {
   display: inline-block;
   margin: 0 10px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
   border-radius: 5px;
 }
 
-.postDetails{
+.postDetails {
   width: 100%;
   margin-bottom: 10px;
   display: flex;
@@ -23,14 +23,14 @@
   padding: 0 10px;
 }
 
-.postDetails .details{
+.postDetails .details {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 8px 0;
 }
 
-.postDetails .name{
+.postDetails .name {
   width: 100px;
   display: flex;
   align-items: center;
@@ -39,50 +39,50 @@
   margin: 0;
 }
 
-.name span{
+.name span {
   font-size: 18px;
   font-weight: bold;
 }
 
-.name .date{
+.name .date {
   font-size: 13px;
 }
 
-.moreIcon{
+.moreIcon {
   font-size: 30px;
   cursor: pointer;
 }
 
-.postDetails .profileImage{
+.postDetails .profileImage {
   width: 8%;
   height: 8%;
   border-radius: 50%;
 }
 
-.postDescription{
+.postDescription {
   width: 90%;
   padding: 0 10px;
 }
 
-.postImage{
+.postImage {
   width: 100%;
   height: auto;
   border-radius: 5px;
 }
 
-.postImage img{
+.postImage img {
   width: 100%;
   height: auto;
 }
 
-.divider{
+.divider {
   width: 95%;
   height: 1px;
   background-color: #e0e0e0;
   margin-top: 8px;
 }
 
-.postStats{
+.postStats {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -91,19 +91,21 @@
   padding: 0 10px;
 }
 
-.postStats span{
+.postStats span {
   font-size: 14px;
   color: #8e8e8e;
 }
 
-.postReactions{
+.postReactions {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 8px 10px;
 }
 
-.like, .comment, .share{
+.like,
+.comment,
+.share {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -111,28 +113,27 @@
   cursor: pointer;
 }
 
-.share:hover{
+.share:hover {
   background-color: #e0e0e0;
   border-radius: 4px;
 }
 
-.like:hover{
+.like:hover {
   background-color: #e0e0e0;
   border-radius: 4px;
 }
 
-.comment:hover{
+.comment:hover {
   background-color: #e0e0e0;
   border-radius: 4px;
 }
 
-
-.reactionIcons{
+.reactionIcons {
   font-size: 23px;
   font-weight: 600;
 }
 
-.postReactions span{
+.postReactions span {
   color: #8e8e8e;
   font-size: 16px;
 }
