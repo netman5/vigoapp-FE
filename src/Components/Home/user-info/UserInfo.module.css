@@ -60,3 +60,27 @@
   gap: 10px;
   margin: 0;
 }
+
+.groups, .events, .hashtags{
+  padding: 10px;
+}
+
+.groups, .events, .hashtags, ul{
+  list-style: none;
+  padding-left: 10px;
+}
+
+.lists{
+  display: flex;
+  gap: 8px;
+}
+
+.lists span{
+  color: #1F90FF;
+  cursor: pointer;
+}
+
+.hashtags li{
+  color: #1F90FF;
+  cursor: pointer;
+}
