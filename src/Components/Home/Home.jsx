@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../../features/posts/postsSlice';
 import Styles from './Home.module.css';
-import FollowersSection from './FollowersSection';
+import FollowersSection from './followers/FollowersSection';
 import Feeds from './Feeds';
 import UserInfo from './user-info/UserInfo';
 

@@ -23,7 +23,7 @@ function UserDetails() {
         <p>
           Occupation:
           {' '}
-          <span>Sofware Developer</span>
+          <span>Software Developer</span>
         </p>
         <div className={styles.follow}>
           <p>

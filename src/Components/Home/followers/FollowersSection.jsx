@@ -1,10 +1,12 @@
+/* eslint-disable arrow-body-style */
 import React from 'react';
+import Events from './Events';
 
 const FollowersSection = () => {
-  const followers = 'Followers';
+  // const followers = 'Followers';
   return (
     <div>
-      <h1>{followers}</h1>
+      <Events />
     </div>
   );
 };

@@ -1,8 +1,8 @@
-# vigo-app
+# Connecta
 
 ## Description
 
-Vigoapp is a full stack social media app for creating posts, connecting with friends and family, the frontend is built with React & Redux toolkit and the backend is built with Nodejs, Express, MySQL and the backend can be found [here.](https://github.com/netman5/vigo-app.git)
+Connecta is a full stack social media app for creating posts, connecting with friends and family, the frontend is built with React & Redux toolkit and the backend is built with Nodejs, Express, MySQL and the backend can be found [here.](https://github.com/netman5/vigo-app.git)
 
 It is built as a requirement for the take home challenge from VigoPlace.
 

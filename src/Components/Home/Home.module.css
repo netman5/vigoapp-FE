@@ -8,18 +8,18 @@
 }
 
 .UserInfo {
-  flex: 25%;
+  flex: 20%;
   border-right: 1px solid #e0e0e0;
   padding: 20px;
 }
 
 .Feeds {
-  flex: 55%;
+  flex: 50%;
   padding: 20px;
 }
 
 .Followers {
-  flex: 20%;
+  flex: 25%;
   border-left: 1px solid #e0e0e0;
   padding: 20px;
 }

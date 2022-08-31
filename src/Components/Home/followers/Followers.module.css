@@ -1,0 +1,37 @@
+.container{
+  width: 100%;
+  /* border: 1px solid red; */
+  padding: 5px;
+}
+
+.events{
+  padding-left: 0;
+}
+
+.events li{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 5px;
+  border-radius: 3px;
+  gap: 5px;
+  align-items: center;
+}
+
+.events li span{
+  font-weight: 400;
+}
+
+.events li button{
+  background-color: white;
+  border: 1px solid dodgerblue;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: dodgerblue;
+}
+
+.events li button:hover{
+  background-color: dodgerblue;
+  color: white;
+}
