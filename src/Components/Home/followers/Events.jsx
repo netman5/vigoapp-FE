@@ -1,8 +1,8 @@
 import { useId, useEffect, useState } from 'react';
+import axios from 'axios';
 import styles from './Followers.module.css';
 
 function Events() {
-  const [eventLists, setEventLists] = useState('');
   const id = useId();
   const events = [
     {
@@ -26,20 +26,25 @@ function Events() {
       name: 'ReactJS Conference',
     },
   ];
+  const [eventLists, setEventLists] = useState(events);
+  const url = process.env.TICKET_MASTER_API;
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((pos) => {
-      console.log('Latitude is: ', pos.coords.latitude);
-      console.log('Longitude is: ', pos.coords.longitude);
-    });
+    const fetchAPI = async () => {
+      const response = await axios.get(url);
+      setEventLists(response.data);
+    };
+    fetchAPI();
   }, []);
+
   return (
     <div className={styles.container}>
       <h2>Upcoming Events</h2>
-      {events.map((event) => (
+      {eventLists.map((event) => (
         <ul key={event.id} className={styles.events}>
           <li className={styles.eventItems}>
             <span>{event.name}</span>
+            <span>2022-03-01</span>
             <button type="button">Add Event</button>
           </li>
         </ul>
