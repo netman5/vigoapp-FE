@@ -1,72 +1,72 @@
-import React, { useId } from 'react';
+import React from 'react';
 import { HiUserGroup } from 'react-icons/hi';
 import { BsCalendar4Event } from 'react-icons/bs';
 import { RiHashtag } from 'react-icons/ri';
 import styles from './UserInfo.module.css';
+import { id } from '../../../utils/utils';
 
 function Activity() {
-  const id = useId();
   const groups = [
     {
-      id,
+      id: id(),
       name: 'Sales Yard',
     },
     {
-      id,
+      id: id(),
       name: 'Open Market',
     },
     {
-      id,
+      id: id(),
       name: 'Book Warmer',
     },
     {
-      id,
+      id: id(),
       name: 'The Thinkers',
     },
     {
-      id,
+      id: id(),
       name: 'Neighborhood Watch',
     },
   ];
 
   const events = [
     {
-      id,
+      id: id(),
       name: 'Cooking',
     },
     {
-      id,
+      id: id(),
       name: 'JSWorld Conference',
     },
     {
-      id,
+      id: id(),
       name: 'BedFord River Carnival',
     },
     {
-      id,
+      id: id(),
       name: 'Summer Job Festival',
     },
     {
-      id,
+      id: id(),
       name: 'ReactJS Conference',
     },
   ];
 
   const hashtags = [
     {
-      id,
+      id: id(),
       name: 'Postive Thinking',
     },
     {
-      id,
+      id: id(),
       name: 'WAGMI',
     },
     {
-      id,
+      id: id(),
       name: 'Coding',
     },
     {
-      id,
+      id: id(),
       name: 'bugs',
     },
   ];
