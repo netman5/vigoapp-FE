@@ -11,6 +11,7 @@
 .events li{
   width: 100%;
   display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 5px;
   border-radius: 3px;
@@ -18,15 +19,20 @@
   align-items: center;
 }
 
+.eventsImg{
+  width: 100%;
+}
+
 .events li span{
-  font-weight: 400;
+  font-weight: 300;
+  font-size: 13px;
 }
 
 .events li button{
   background-color: white;
   border: 1px solid dodgerblue;
   border-radius: 3px;
-  padding: 5px 5px;
+  padding: 5px 15px;
   cursor: pointer;
   color: dodgerblue;
 }

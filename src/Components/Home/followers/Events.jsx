@@ -2,31 +2,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './Followers.module.css';
-import { id } from '../../../utils/utils';
 
 function Events() {
-  const events = [
-    {
-      id: id(),
-      name: 'Cooking',
-    },
-    {
-      id: id(),
-      name: 'JSWorld Conference',
-    },
-    {
-      id: id(),
-      name: 'BedFord River Carnival',
-    },
-    {
-      id: id(),
-      name: 'Summer Job Festival',
-    },
-    {
-      id: id(),
-      name: 'ReactJS Conference',
-    },
-  ];
   const [eventLists, setEventLists] = useState([]);
   const url = process.env.REACT_APP_TICKETMASTER_API;
 
@@ -37,17 +14,17 @@ function Events() {
     };
     fetchAPI();
   }, [eventLists]);
-  // const fourEvents = eventLists.length > 4 ? 4 : eventLists;
-  // console.log(fourEvents);
+
   return (
     <div className={styles.container}>
       <h2>Upcoming Events</h2>
-      {events.map((event) => (
+      {eventLists.slice(0, 3).map((event) => (
         <ul key={event.id} className={styles.events}>
           <li className={styles.eventItems}>
+            <img src={event.images[0].url} alt={event.images[0].url} className={styles.eventsImg} />
             <span>{event.name}</span>
-            <span>2022-03-01</span>
-            <button type="button">Add</button>
+            <span>{`Date: ${event.dates.start.localDate} : Time: ${event.dates.start.localTime}`}</span>
+            <button type="button">Add Event</button>
           </li>
         </ul>
       ))}
