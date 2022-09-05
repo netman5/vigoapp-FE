@@ -41,3 +41,27 @@
   background-color: dodgerblue;
   color: white;
 }
+
+/* Followers */
+
+.followers{
+  padding: 5px;
+}
+
+.followers img{
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+}
+
+.followerLists{
+  width: 100%;
+  padding: 5px;
+}
+
+.follower{
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
