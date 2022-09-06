@@ -1,9 +1,14 @@
-import React from 'react';
-import { id } from '../../../utils/utils';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import { id } from '../../../utils/utils';
 import styles from './Followers.module.css';
 import Avatar from '../../../images/avatar.webp';
+import { fetchUserFollowers } from '../../../features/follows/followersSlice';
 
 function Friends() {
+  const dispatch = useDispatch();
+  const { id } = JSON.parse(localStorage.getItem('user'));
+  const StoreFollowers = useSelector((state) => state.followers);
   const followers = [
     {
       id: id(),
@@ -33,6 +38,12 @@ function Friends() {
 
     },
   ];
+
+  useEffect(() => {
+    dispatch(fetchUserFollowers(id));
+  }, [dispatch]);
+
+  console.log(StoreFollowers);
 
   return (
     <div className={styles.followers}>
