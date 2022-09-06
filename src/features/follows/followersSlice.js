@@ -5,7 +5,7 @@ import axios from 'axios';
 const baseUrl = process.env.REACT_APP_BASE_URL;
 
 const initialState = {
-  followers: [],
+  data: [],
   message: '',
   loading: false,
   error: null,
@@ -38,7 +38,7 @@ const followersSlice = createSlice({
 
     [fetchUserFollowers.fulfilled]: (state, action) => {
       state.loading = false;
-      state.followers = action.payload;
+      state.data = action.payload;
     },
 
     [fetchUserFollowers.rejected]: (state, action) => {
@@ -48,4 +48,4 @@ const followersSlice = createSlice({
   },
 });
 
-export default followersSlice;
+export default followersSlice.reducer;

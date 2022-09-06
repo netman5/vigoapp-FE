@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styles from './UserInfo.module.css';
 import Avatar from '../../../images/avatar.webp';
 import CoverPhoto from '../../../images/coverphoto.jpeg';
 
 function UserDetails() {
   const { name } = JSON.parse(localStorage.getItem('user'));
+  const { count } = useSelector((state) => state.followers.data);
   return (
     <div className={styles.container}>
       <div className={styles.imageContainer}>
@@ -29,7 +31,7 @@ function UserDetails() {
           <p>
             Followers:
             {' '}
-            <span>200</span>
+            <span>{count}</span>
           </p>
 
           <p>

@@ -7,43 +7,12 @@ import { fetchUserFollowers } from '../../../features/follows/followersSlice';
 
 function Friends() {
   const dispatch = useDispatch();
-  const { id } = JSON.parse(localStorage.getItem('user'));
-  const StoreFollowers = useSelector((state) => state.followers);
-  const followers = [
-    {
-      id: id(),
-      name: 'Musa Jugunu',
-      imageUrl: '',
-
-    },
-
-    {
-      id: id(),
-      name: 'Yahaya Muniru',
-      imageUrl: '',
-
-    },
-
-    {
-      id: id(),
-      name: 'Jayden Adagba',
-      imageUrl: '',
-
-    },
-
-    {
-      id: id(),
-      name: 'Peter Aganba',
-      imageUrl: '',
-
-    },
-  ];
+  const { id: userId } = JSON.parse(localStorage.getItem('user'));
+  const { followers } = useSelector((state) => state.followers.data);
 
   useEffect(() => {
-    dispatch(fetchUserFollowers(id));
+    dispatch(fetchUserFollowers(userId));
   }, [dispatch]);
-
-  console.log(StoreFollowers);
 
   return (
     <div className={styles.followers}>
