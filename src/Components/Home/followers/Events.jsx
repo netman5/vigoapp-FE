@@ -13,7 +13,7 @@ function Events() {
       setEventLists(response.data._embedded.events);
     };
     fetchAPI();
-  }, [eventLists]);
+  }, []);
 
   return (
     <div className={styles.container}>

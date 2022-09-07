@@ -3,6 +3,10 @@
   padding: 5px;
 }
 
+/* Events */
+h2{
+  font-size: 25px;
+}
 .events{
   width: 100%;
   padding-left: 0;
