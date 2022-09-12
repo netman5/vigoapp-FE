@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import classes from './MainNavigation.module.css';
 import { logoutUser } from '../../features/auth/authSlice';
+import SearchBox from './SearchBox';
 
 function MainNavigation() {
   const isLoggedIn = localStorage.getItem('token') !== null;
@@ -22,6 +23,7 @@ function MainNavigation() {
         <ul>
           {isLoggedIn ? (
             <>
+              <li><SearchBox /></li>
               <li>
                 Hello!
                 {' '}

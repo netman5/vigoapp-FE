@@ -5,6 +5,7 @@ import Styles from './Home.module.css';
 import FollowersSection from './followers/FollowersSection';
 import Feeds from './Feeds';
 import UserInfo from './user-info/UserInfo';
+import SearchPage from '../searchPage/SearchPage';
 
 function Home() {
   const dispatch = useDispatch();
@@ -14,20 +15,25 @@ function Home() {
   }, [dispatch]);
 
   const storedPosts = useSelector((state) => state.posts.data.posts);
+  const { query, data } = useSelector((state) => state.users);
 
   return (
     <div className={Styles.home}>
-      <section className={Styles.UserInfo}>
-        <UserInfo />
-      </section>
+      {query ? <SearchPage query={query} data={data} /> : (
+        <>
+          <section className={Styles.UserInfo}>
+            <UserInfo />
+          </section>
 
-      <section className={Styles.Feeds}>
-        <Feeds posts={storedPosts} />
-      </section>
+          <section className={Styles.Feeds}>
+            <Feeds posts={storedPosts} />
+          </section>
 
-      <section className={Styles.Followers}>
-        <FollowersSection />
-      </section>
+          <section className={Styles.Followers}>
+            <FollowersSection />
+          </section>
+        </>
+      )}
     </div>
   );
 }

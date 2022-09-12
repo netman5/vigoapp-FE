@@ -4,6 +4,8 @@ import Layout from './Components/Nav/Layout';
 import Register from './Components/authenication/Register';
 import Login from './Components/authenication/Login';
 import Home from './Components/Home/Home';
+import Profile from './Components/profile/Profile';
+import SearchPage from './Components/searchPage/SearchPage';
 
 function App() {
   const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -16,6 +18,8 @@ function App() {
           {isLoggedIn ? (
             <>
               <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/search" element={<SearchPage />} />
             </>
           ) : <Route path="/" element={<Login />} />}
 
