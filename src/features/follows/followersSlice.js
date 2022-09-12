@@ -17,7 +17,6 @@ export const fetchUserFollowers = createAsyncThunk('followers/getUserFollowers',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
         Accept: 'application/json',
-        'content-type': 'multipart/form-data',
       },
     });
     return response.data;

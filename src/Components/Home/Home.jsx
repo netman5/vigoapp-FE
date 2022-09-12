@@ -6,12 +6,14 @@ import FollowersSection from './followers/FollowersSection';
 import Feeds from './Feeds';
 import UserInfo from './user-info/UserInfo';
 import SearchPage from '../searchPage/SearchPage';
+import { fetchAllUsers } from '../../features/users/usersSlice';
 
 function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllPosts());
+    dispatch(fetchAllUsers());
   }, [dispatch]);
 
   const storedPosts = useSelector((state) => state.posts.data.posts);

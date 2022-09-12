@@ -1,0 +1,11 @@
+.container{
+  width: 80%;
+  border: 1px solid red;
+  margin: auto;
+}
+
+.container img{
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+}
