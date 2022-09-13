@@ -2,16 +2,16 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
 import styles from './SearchPage.module.css';
 
 const SearchPage = ({ data, query }) => {
   const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
-  const { followers } = useSelector((state) => state.followers.data);
   const users = data.users || [];
   const dispatch = useDispatch();
+  const click = false;
 
   return (
     <div className={styles.container}>
@@ -37,7 +37,7 @@ const SearchPage = ({ data, query }) => {
             className="btn btn-outline-primary"
             onClick={() => dispatch(followUser({ currUserId, following_id: user.id }))}
           >
-            {followers.includes(user.id) ? 'unfollow' : 'follow'}
+            {!click ? 'unfollow' : 'follow'}
           </button>
         </div>
       ))}

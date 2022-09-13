@@ -20,7 +20,6 @@ export const followUser = createAsyncThunk('follow/FollowUser', async ({ currUse
         Accept: 'application/json',
       },
     });
-    console.log(response.data.message);
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
