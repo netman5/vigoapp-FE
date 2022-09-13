@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -10,6 +11,21 @@ const initialState = {
   loading: false,
   error: null,
 };
+
+export const followUser = createAsyncThunk('follow/FollowUser', async ({ currUserId, following_id }, thunkAPI) => {
+  try {
+    const response = await axios.post(`${baseUrl}/${currUserId}/follow`, { currUserId, following_id }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'application/json',
+      },
+    });
+    console.log(response.data.message);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
 
 export const fetchUserFollowers = createAsyncThunk('followers/getUserFollowers', async (userId, thunkAPI) => {
   try {

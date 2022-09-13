@@ -9,7 +9,7 @@ import SearchBox from './SearchBox';
 function MainNavigation() {
   const isLoggedIn = localStorage.getItem('token') !== null;
   const user = JSON.parse(localStorage.getItem('user')) || {};
-  const { name, email } = user;
+  const { name } = user;
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -28,8 +28,6 @@ function MainNavigation() {
                 Hello!
                 {' '}
                 {name}
-                {' '}
-                {email}
               </li>
               <li>
                 <Link to="/">Home</Link>
