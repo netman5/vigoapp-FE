@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
@@ -11,7 +11,14 @@ const SearchPage = ({ data, query }) => {
   const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
   const users = data.users || [];
   const dispatch = useDispatch();
-  const click = false;
+  const [btnText, setBtnText] = useState('Follow');
+
+  const handleFollow = (userId) => {
+    dispatch(followUser({ currUserId, following_id: userId }));
+    if (userId) {
+      setBtnText('Unfollow');
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -35,9 +42,9 @@ const SearchPage = ({ data, query }) => {
           <button
             type="button"
             className="btn btn-outline-primary"
-            onClick={() => dispatch(followUser({ currUserId, following_id: user.id }))}
+            onClick={() => handleFollow(user.id)}
           >
-            {!click ? 'unfollow' : 'follow'}
+            {btnText}
           </button>
         </div>
       ))}
