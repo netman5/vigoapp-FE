@@ -2,21 +2,26 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { followUser } from '../../features/follows/followersSlice';
+// import { useSelector } from 'react-redux';
+// import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
 import styles from './SearchPage.module.css';
 
 const SearchPage = ({ data, query }) => {
-  const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
-  const users = data.users || [];
-  const dispatch = useDispatch();
   const [btnText, setBtnText] = useState('Follow');
+  // const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
+  // const { followers } = useSelector((state) => state.followers.data);
+  const users = data.users || [];
+  // const dispatch = useDispatch();
 
   const handleFollow = (userId) => {
-    dispatch(followUser({ currUserId, following_id: userId }));
-    if (userId) {
-      setBtnText('Unfollow');
+    const followingId = users.find((user) => user.id === userId);
+    // dispatch(followUser({ currUserId, following_id: userId }));
+    if (!followingId.id) {
+      setBtnText(btnText);
+      console.log(userId, followingId.id);
+    } else {
+      setBtnText('unfollow');
     }
   };
 
