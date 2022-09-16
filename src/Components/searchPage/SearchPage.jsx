@@ -2,28 +2,29 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { followUser } from '../../features/follows/followersSlice';
+import { useDispatch } from 'react-redux';
+import { followUser, unFollowUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
 import styles from './SearchPage.module.css';
 
 const SearchPage = ({ data, query }) => {
-  const [btnText, setBtnText] = useState('Follow');
-  // const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
+  const [following, setFollowing] = useState(false);
+  const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
   // const { followers } = useSelector((state) => state.followers.data);
   const users = data.users || [];
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const handleFollow = (userId) => {
-    const followingId = users.find((user) => user.id === userId);
-    // dispatch(followUser({ currUserId, following_id: userId }));
-    if (!followingId.id) {
-      setBtnText(btnText);
-      console.log(userId, followingId.id);
-    } else {
-      setBtnText('unfollow');
-    }
+  const follow = (userId) => {
+    dispatch(followUser({ currUserId, following_id: userId }));
+    setFollowing(true);
   };
+
+  const unFollow = (userId) => {
+    dispatch(unFollowUser({ currUserId, following_id: userId }));
+    setFollowing(false);
+  };
+
+  const handleFollow = (userId) => (following ? unFollow(userId) : follow(userId));
 
   return (
     <div className={styles.container}>
@@ -47,9 +48,9 @@ const SearchPage = ({ data, query }) => {
           <button
             type="button"
             className="btn btn-outline-primary"
-            onClick={() => handleFollow(user.id)}
+            onClick={handleFollow(user.id)}
           >
-            {btnText}
+            Follow
           </button>
         </div>
       ))}

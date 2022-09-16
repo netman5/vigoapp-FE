@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './Followers.module.css';
 import Avatar from '../../../images/avatar.webp';
-import { fetchUserFollowers } from '../../../features/follows/followersSlice';
+import { fetchUserFollowers, unFollowUser } from '../../../features/follows/followersSlice';
 
 function Friends() {
   const dispatch = useDispatch();
@@ -10,6 +10,10 @@ function Friends() {
   const { followers } = useSelector((state) => state.followers.data);
 
   const data = followers || [];
+
+  const handleUnFollow = (followingId) => {
+    dispatch(unFollowUser({ userId, following_id: followingId }));
+  };
 
   useEffect(() => {
     dispatch(fetchUserFollowers(userId));
@@ -23,6 +27,13 @@ function Friends() {
           <li key={follower.id} className={styles.follower}>
             <img src={follower.imageUrl || Avatar} alt="" />
             <span>{follower.name}</span>
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => handleUnFollow(follower.id)}
+            >
+              Unfollow
+            </button>
           </li>
         ))}
       </ul>

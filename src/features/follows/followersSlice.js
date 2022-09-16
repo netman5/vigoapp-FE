@@ -26,6 +26,20 @@ export const followUser = createAsyncThunk('follow/FollowUser', async ({ currUse
   }
 });
 
+export const unFollowUser = createAsyncThunk('unFollow/unFollowUser', async ({ currUserId, following_id }, thunkAPI) => {
+  try {
+    const response = await axios.post(`${baseUrl}/${currUserId}/unfollow`, { currUserId, following_id }, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Accept: 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
 export const fetchUserFollowers = createAsyncThunk('followers/getUserFollowers', async (userId, thunkAPI) => {
   try {
     const response = await axios.get(`${baseUrl}/${userId}/followers`, {
