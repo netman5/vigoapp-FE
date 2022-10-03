@@ -22,9 +22,17 @@ const SearchPage = ({ data, query }) => {
   const unFollow = (userId) => {
     dispatch(unFollowUser({ currUserId, following_id: userId }));
     setFollowing(false);
+    console.log(currUserId, userId);
   };
 
-  const handleFollow = (userId) => (following ? unFollow(userId) : follow(userId));
+  // const handleFollow = (userId) => (following ? unFollow(userId) : follow(userId));
+  const handleFollow = (userId) => {
+    if (following) {
+      unFollow(userId);
+    } else {
+      follow(userId);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -48,7 +56,7 @@ const SearchPage = ({ data, query }) => {
           <button
             type="button"
             className="btn btn-outline-primary"
-            onClick={handleFollow(user.id)}
+            onClick={() => handleFollow(user.id)}
           >
             Follow
           </button>

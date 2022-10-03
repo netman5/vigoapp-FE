@@ -13,6 +13,7 @@ function Friends() {
 
   const handleUnFollow = (followingId) => {
     dispatch(unFollowUser({ userId, following_id: followingId }));
+    console.log(userId, followingId);
   };
 
   useEffect(() => {
