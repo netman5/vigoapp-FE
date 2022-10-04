@@ -13,12 +13,15 @@ function Friends() {
 
   const handleUnFollow = (followingId) => {
     dispatch(unFollowUser({ userId, following_id: followingId }));
-    console.log(userId, followingId);
   };
 
   useEffect(() => {
     dispatch(fetchUserFollowers(userId));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchUserFollowers(userId));
+  }, [followers]);
 
   return (
     <div className={styles.followers}>
