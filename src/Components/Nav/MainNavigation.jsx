@@ -34,7 +34,7 @@ function MainNavigation() {
               </li>
 
               <li onClick={handleLogout}>
-                <Link to="/Logout">Logout</Link>
+                <Link to="/logout">Logout</Link>
               </li>
             </>
           ) : (
