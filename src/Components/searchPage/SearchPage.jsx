@@ -36,8 +36,15 @@ const SearchPage = ({ data, query }) => {
   };
 
   useEffect(() => {
-    handleFollow();
-  }, [users]);
+    const isFollowing = users.filter((user) => user.id === currUserId);
+    if (isFollowing.length > 0) {
+      setFollowing(true);
+      setBtnText('Unfollow');
+    } else {
+      setFollowing(false);
+      setBtnText('Follow');
+    }
+  }, [users, currUserId]);
 
   return (
     <div className={styles.container}>
