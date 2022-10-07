@@ -1,15 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
 import styles from './SearchPage.module.css';
 
 const SearchPage = ({ data, query }) => {
-  // const [following, setFollowing] = useState(false);
-  const [btnText, setBtnText] = useState('Follow');
   const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
   // const { followers } = useSelector((state) => state.followers.data);
   const users = data.users || [];
@@ -28,15 +26,6 @@ const SearchPage = ({ data, query }) => {
 
   const handleFollow = (userId) => {
     follow(userId);
-    const user = users.find((user) => user.id === userId);
-    if (user.id === userId) {
-      console.log(user.id, userId);
-      // setFollowing(true);
-      setBtnText('Following');
-    } else {
-      // setFollowing(false);
-      setBtnText('Follow');
-    }
   };
 
   return (
@@ -63,7 +52,7 @@ const SearchPage = ({ data, query }) => {
             className="btn btn-outline-primary"
             onClick={() => handleFollow(user.id)}
           >
-            {btnText}
+            {!user.id ? 'Follow' : 'Following'}
           </button>
         </div>
       ))}
