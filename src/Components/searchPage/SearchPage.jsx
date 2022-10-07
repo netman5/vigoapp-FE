@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { followUser, unFollowUser } from '../../features/follows/followersSlice';
+import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
 import styles from './SearchPage.module.css';
 
 const SearchPage = ({ data, query }) => {
-  const [following, setFollowing] = useState(false);
+  // const [following, setFollowing] = useState(false);
   const [btnText, setBtnText] = useState('Follow');
   const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
   // const { followers } = useSelector((state) => state.followers.data);
@@ -17,34 +17,27 @@ const SearchPage = ({ data, query }) => {
 
   const follow = (userId) => {
     dispatch(followUser({ currUserId, following_id: userId }));
-    setFollowing(true);
+    // setFollowing(true);
   };
 
-  const unFollow = (followingId) => {
-    dispatch(unFollowUser({ currUserId, following_id: followingId }));
-    setFollowing(false);
-  };
+  // const unFollow = (userId) => {
+  //   dispatch(unFollowUser({ currUserId, following_id: userId }));
+  //   console.log(userId);
+  //   setFollowing(false);
+  // };
 
   const handleFollow = (userId) => {
-    if (following) {
-      unFollow(userId);
-      setBtnText('Follow');
+    follow(userId);
+    const user = users.find((user) => user.id === userId);
+    if (user.id === userId) {
+      console.log(user.id, userId);
+      // setFollowing(true);
+      setBtnText('Following');
     } else {
-      follow(userId);
-      setBtnText('Unfollow');
+      // setFollowing(false);
+      setBtnText('Follow');
     }
   };
-
-  useEffect(() => {
-    const isFollowing = users.filter((user) => user.id === currUserId);
-    if (isFollowing.length > 0) {
-      setFollowing(true);
-      setBtnText('Unfollow');
-    } else {
-      setFollowing(false);
-      setBtnText('Follow');
-    }
-  }, [users, currUserId]);
 
   return (
     <div className={styles.container}>
