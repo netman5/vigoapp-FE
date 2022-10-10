@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
 import styles from './SearchPage.module.css';
 
 const SearchPage = ({ data, query }) => {
+  const [following, setFollowing] = useState([]);
+  const [btnText, setBtnText] = useState('Follow');
   const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
   // const { followers } = useSelector((state) => state.followers.data);
   const users = data.users || [];
@@ -15,7 +17,6 @@ const SearchPage = ({ data, query }) => {
 
   const follow = (userId) => {
     dispatch(followUser({ currUserId, following_id: userId }));
-    // setFollowing(true);
   };
 
   // const unFollow = (userId) => {
@@ -25,8 +26,21 @@ const SearchPage = ({ data, query }) => {
   // };
 
   const handleFollow = (userId) => {
+    if (userId === currUserId) {
+      return;
+    }
     follow(userId);
+    setFollowing([...following, userId]);
+    console.log(following);
   };
+
+  useEffect(() => {
+    if (following.includes(data.id)) {
+      setBtnText('Following');
+    } else {
+      setBtnText('Follow');
+    }
+  }, [following]);
 
   return (
     <div className={styles.container}>
@@ -52,7 +66,7 @@ const SearchPage = ({ data, query }) => {
             className="btn btn-outline-primary"
             onClick={() => handleFollow(user.id)}
           >
-            {!user.id ? 'Follow' : 'Following'}
+            {btnText}
           </button>
         </div>
       ))}
