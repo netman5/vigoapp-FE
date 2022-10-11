@@ -11,7 +11,6 @@ const SearchPage = ({ data, query }) => {
   const [following, setFollowing] = useState([]);
   const [btnText, setBtnText] = useState('Follow');
   const { id: currUserId } = JSON.parse(localStorage.getItem('user'));
-  // const { followers } = useSelector((state) => state.followers.data);
   const users = data.users || [];
   const dispatch = useDispatch();
 
@@ -21,8 +20,6 @@ const SearchPage = ({ data, query }) => {
 
   // const unFollow = (userId) => {
   //   dispatch(unFollowUser({ currUserId, following_id: userId }));
-  //   console.log(userId);
-  //   setFollowing(false);
   // };
 
   const handleFollow = (userId) => {
