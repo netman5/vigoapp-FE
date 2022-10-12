@@ -25,7 +25,7 @@ function MainNavigation() {
             <>
               <li><SearchBox /></li>
               <li>
-                Hello!
+                Welcome!
                 {' '}
                 {name}
               </li>
