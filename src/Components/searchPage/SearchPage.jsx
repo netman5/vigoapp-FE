@@ -1,7 +1,8 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { followUser } from '../../features/follows/followersSlice';
 import Avatar from '../../images/avatar.webp';
@@ -28,15 +29,18 @@ const SearchPage = ({ data, query }) => {
     }
     follow(userId);
     setFollowing([...following, userId]);
+    isFollowing(userId);
   };
 
-  useEffect(() => {
-    if (following.includes(data.id)) {
+  // check if user is already following
+  const isFollowing = (userId) => {
+    if (following.includes(userId)) {
       setBtnText('Following');
-    } else {
-      setBtnText('Follow');
+      return true;
     }
-  }, [following]);
+    setBtnText('Follow');
+    return false;
+  };
 
   return (
     <div className={styles.container}>
