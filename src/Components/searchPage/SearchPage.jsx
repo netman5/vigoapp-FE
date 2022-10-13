@@ -28,7 +28,6 @@ const SearchPage = ({ data, query }) => {
     }
     follow(userId);
     setFollowing([...following, userId]);
-    console.log(following);
   };
 
   useEffect(() => {
