@@ -19,10 +19,6 @@ const SearchPage = ({ data, query }) => {
     dispatch(followUser({ currUserId, following_id: userId }));
   };
 
-  // const unFollow = (userId) => {
-  //   dispatch(unFollowUser({ currUserId, following_id: userId }));
-  // };
-
   const handleFollow = (userId) => {
     if (userId === currUserId) {
       return;
